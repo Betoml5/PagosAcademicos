@@ -1,0 +1,53 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    Layout = "MainLayout";
+}
+
+
+<section className="max-w-xl mx-2 md:mx-auto m-4 ">
+    <h3 className="text-3xl mb-4 ">Hola, Alberto</h3>
+    <div className="flex items-center text-lg">
+        <p>No tienes pagos pendientes</p>
+    </div>
+
+    <p className="bg-red-500 text-white shadow-2xl p-2 rounded-md">
+        Tienes un pago pendiente.
+        <a className="underline" to="/pagar">
+        Pagar
+        </a>
+    </p>
+
+
+    <hr className="my-4 border" />
+    <h2 className="text-2xl mb-4">Historial de pagos</h2>
+
+    <section>
+   
+   
+        <div 
+             className=" bg-white rounded-md p-4 my-2 shadow-xl">
+            <p className="font-semibold text-2xl mb-2">
+                Pago de inscripcion
+            </p>
+            <p>
+                <span>Cuota:</span> $
+                $1000
+            </p>
+            <p className="mb-2">
+                Pago realizado el 12 de abril del 2023
+            </p>
+
+            <a href="#" className="underline">
+            Ver recibo
+            </a>
+            <p className="w-fit mt-2  text-green-500 font-semibold  rounded-full">
+                Pagado
+            </p>
+        </div>
+        
+
+    </section>
+</section>

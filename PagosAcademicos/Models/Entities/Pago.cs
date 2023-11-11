@@ -15,5 +15,9 @@ public partial class Pago
 
     public int UsuarioId { get; set; }
 
+    public int TipoPagoId { get; set; }
+
+    public virtual TipoPago TipoPago { get; set; } = null!;
+
     public virtual Usuario Usuario { get; set; } = null!;
 }
