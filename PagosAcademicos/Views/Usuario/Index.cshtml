@@ -1,5 +1,70 @@
-﻿@*
+﻿@model PagosAcademicos.Models.ViewModels.IndexUsuarioViewModel
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+
+    Layout = "MainLayout";
 }
+
+
+<section class="max-w-xl mx-2 md:mx-auto m-4 ">
+    <h3 class="text-3xl mb-4 ">Hola, @Model.Nombre</h3>
+    
+    @if (Model.Estatus)
+    {
+        <p class="bg-red-500 text-white shadow-2xl p-2 rounded-md">
+            Tienes un pago pendiente.
+            <a class="underline" to="/pagar">
+                Pagar
+            </a>
+        </p>
+
+    }
+    else
+    {
+        <div class="flex items-center text-lg">
+            <p>No tienes pagos pendientes</p>
+        </div>
+    }
+
+
+    <hr class="my-4 border" />
+    <h2 class="text-2xl mb-4">Historial de pagos</h2>
+
+    @if (Model.Pagos?.Count() > 0)
+    {
+      
+
+        <section>
+            <div class=" bg-white rounded-md p-4 my-2 shadow-xl">
+                <p class="font-semibold text-2xl mb-2">
+                    Pago de inscripcion
+                </p>
+                <p>
+                    <span>Cuota:</span> $
+                    $1000
+                </p>
+                <p class="mb-2">
+                    Pago realizado el 12 de abril del 2023
+                </p>
+
+                <a href="~/Admin/Pago/" class="underline">
+                    Ver recibo
+                </a>
+                <p class="w-fit mt-2  text-green-500 font-semibold  rounded-full">
+                    Pagado
+                </p>
+            </div>
+
+
+        </section>
+    }
+    else
+    {
+        <p>No tienes ningun pago registrado</p>
+    }
+
+
+
+</section>

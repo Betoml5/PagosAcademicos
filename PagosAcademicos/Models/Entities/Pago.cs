@@ -7,13 +7,17 @@ public partial class Pago
 {
     public int Id { get; set; }
 
-    public string Monto { get; set; } = null!;
+    public decimal Monto { get; set; }
 
     public string Concepto { get; set; } = null!;
 
     public DateTime Fecha { get; set; }
 
     public int UsuarioId { get; set; }
+
+    public int TipoPagoId { get; set; }
+
+    public virtual TipoPago TipoPago { get; set; } = null!;
 
     public virtual Usuario Usuario { get; set; } = null!;
 }

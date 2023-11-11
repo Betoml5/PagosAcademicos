@@ -13,8 +13,6 @@ public partial class Usuario
 
     public ulong Estatus { get; set; }
 
-    public string Folio { get; set; } = null!;
-
     public int SemestreId { get; set; }
 
     public int CarreraId { get; set; }

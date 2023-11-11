@@ -7,14 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMvc();
 
-builder.Services.AddDbContext<PagosAcademicosContext>(
+builder.Services.AddDbContext<PagosacademicosContext>(
     optionBuilder => optionBuilder.UseMySql("server=localhost; user id=root; password=root; database=pagosAcademicos",
     ServerVersion.AutoDetect("server=localhost; user id=root; password=root; database=pagosAcademicos")));
 
-//builder.Services.AddTransient<UsuarioRepository>();
-//builder.Services.AddTransient<PagoRepository>();
-//builder.Services.AddSingleton<CarreraRepository>();
-//builder.Services.AddSingleton<SemestreRepository>();
+
+
+builder.Services.AddTransient<Repository<Usuario>>();
+builder.Services.AddTransient<Repository<Pago>>();
+
 
 var app = builder.Build();
 
