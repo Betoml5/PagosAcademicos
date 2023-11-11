@@ -2,13 +2,11 @@
 
 namespace PagosAcademicos.Controllers
 {
-    public class HomeController : Controller
+    public class UsuarioController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-
-
     }
 }
