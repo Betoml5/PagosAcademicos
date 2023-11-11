@@ -1,0 +1,62 @@
+﻿@model IEnumerable<PagosAcademicos.Areas.Admin.Models.ViewModels.IndexPagosViewModel>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "AdminLayout";
+}
+
+<section class="max-w-5xl mx-auto">
+    <h3 class="text-2xl my-4">Pagos</h3>
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+
+                    <th scope="col" class="py-3 px-6">
+                        Id de transacción
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Usuario
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Monto
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Fecha
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Editar
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Eliminar
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+        
+                @foreach (var pago in Model)
+                {
+
+                    <tr class="bg-white border-b ">
+
+                        <td class="py-4 px-6">@pago.Id</td>
+                        <td class="py-4 px-6">
+                            @pago.Usuario.Nombre
+                        </td>
+                        <td class="py-4 px-6">@pago.Monto</td>
+                        <td class="py-4 px-6">@pago.Fecha</td>
+                        <td class="py-4 px-6">
+                            <button>Editar</button>
+                        </td>
+                        <td class="py-4 px-6">
+                            <button>Eliminar</button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</section>
