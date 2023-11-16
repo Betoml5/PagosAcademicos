@@ -7,9 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMvc();
 
+string CadenaConexion = "server = sql.freedb.tech;user = freedb_FirtsUser; database = freedb_cliente; password = 7Z%@TYfXYnxjs4b";
+
 builder.Services.AddDbContext<PagosacademicosContext>(
-    optionBuilder => optionBuilder.UseMySql("server=localhost; user id=root; password=root; database=pagosAcademicos",
-    ServerVersion.AutoDetect("server=localhost; user id=root; password=root; database=pagosAcademicos")));
+    optionBuilder => optionBuilder.UseMySql(CadenaConexion,
+    ServerVersion.AutoDetect(CadenaConexion)));
 
 
 
