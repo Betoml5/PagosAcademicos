@@ -21,20 +21,25 @@ namespace PagosAcademicos.Areas.Admin.Controllers
                 .GetAll()
                 .OrderBy(x => x.Fecha)
                 .Select(pago => new IndexPagosViewModel()
-            {
-                Id = pago.Id,
-                Usuario = new UsuarioModel()
                 {
-                    Id = pago.Usuario.Id,
-                    Nombre = pago.Usuario.Nombre
-                },
-                Monto = pago.Monto,
-                Concepto = pago.Concepto,
-                Fecha = pago.Fecha
-                
-            });
+                    Id = pago.Id,
+                    Usuario = new UsuarioModel()
+                    {
+                        Id = pago.Usuario.Id,
+                        Nombre = pago.Usuario.Nombre
+                    },
+                    Monto = pago.Monto,
+                    Concepto = pago.Concepto,
+                    Fecha = pago.Fecha
+
+                });
 
             return View(vm);
+        }
+
+        public IActionResult Detalles(int Id)
+        {
+            return View();
         }
     }
 }
