@@ -5,63 +5,73 @@
 Layout = "MainLayout";
 }
 
-<section class="flex items-center justify-center  bg-gray-100 text-gray-800 p-8">
+<section class="flex items-center justify-center text-gray-800 p-8">
 	<!-- Component Start -->
-	<div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8 w-full max-w-screen-lg">
-		<div class="lg:col-span-2">
-			<h2 class="text-sm font-medium">Metodo de pago</h2>
-			@*Aqui vamos a iterar los metodos de pago*@
-			<div class="bg-white rounded mt-4 shadow-lg">
-			
-				<div class="flex items-center px-8 py-5">
-					<input class="appearance-none w-4 h-4 rounded-full border-2 border-white ring-2 ring-blue-600 ring-opacity-100" type="radio">
-					<label class="text-sm font-medium ml-4">PayPal</label>
-				</div>
-				<div class="border-t">
-					<div class="flex items-center px-8 py-5">
-						<input class="appearance-none w-4 h-4 rounded-full border-2 border-white ring-2 ring-blue-600 ring-opacity-100 bg-blue-600" type="radio">
-						<label class="text-sm font-medium ml-4">Tarjeta de credito</label>
-					</div>
-					<div class="grid grid-cols-2 gap-4 px-8 pb-8">
-						<div class="col-span-2">
-							<label class="text-xs font-semibold" for="cardNumber">Card number</label>
-							<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text" placeholder="0000 0000 0000 0000">
+    <form>
+		<div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8 w-full max-w-screen-lg">
+			<div class="lg:col-span-2">
+				<h2 class="text-sm font-medium">Metodo de pago</h2>
+				@*Aqui vamos a iterar los metodos de pago*@
+				<div class="bg-white rounded mt-4 shadow-lg">
+
+
+					<div class="border-t">
+						<div class="flex items-center px-8 py-5">
+							<input
+								class=""
+								name="tipoPago"
+								value="paypal"
+								type="radio">
+							<label class="text-sm font-medium ml-4">PayPal</label>
 						</div>
-						<div class="">
-							<label class="text-xs font-semibold" for="cardNumber">Expiry Date</label>
-							<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text" placeholder="MM/YY">
+						<div class="flex items-center px-8 py-5">
+							<input
+							name="tipoPago"
+							value="tarjetaCredito"
+							type="radio">
+							<label class="text-sm font-medium ml-4">Tarjeta de credito</label>
 						</div>
-						<div class="">
-							<label class="text-xs font-semibold" for="cardNumber">CVC/CVV</label>
-							<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="password" placeholder="...">
+						<div class="grid grid-cols-2 gap-4 px-8 pb-8">
+							<div class="col-span-2">
+								<label class="text-xs font-semibold" for="cardNumber">Numero de la tarjeta</label>
+								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text" placeholder="0000 0000 0000 0000">
+							</div>
+							<div class="">
+								<label class="text-xs font-semibold" for="cardNumber">Fecha de expiración</label>
+								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text" placeholder="MM/YY">
+							</div>
+							<div class="">
+								<label class="text-xs font-semibold" for="cardNumber">CVC/CVV</label>
+								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="password" placeholder="...">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div>
-			<h2 class="text-sm font-medium">Resumen de tu pago</h2>
-			<div class="bg-white rounded mt-4 shadow-lg py-6">
-			
-				
-				<div class="px-8   pt-4">
-					<div class="flex items-end justify-between">
-						<span class="font-semibold">Pagaras</span>
-						<span class="font-semibold">$2,750</span>
+			<div>
+				<h2 class="text-sm font-medium">Resumen de tu pago</h2>
+				<div class="bg-white rounded mt-4 shadow-lg py-6">
+
+
+					<div class="px-8   pt-4">
+						<div class="flex items-end justify-between">
+							<span class="font-semibold">Pagaras</span>
+							<span class="font-semibold">$2,750</span>
+						</div>
+
 					</div>
-				
-				</div>
-				<div class="flex items-center px-8 mt-8">
-					<input id="termsConditions" type="checkbox">
-					<label class="text-xs text-gray-500 ml-2" for="termsConditions">Acepto los terminos y condiciones</label>
-				</div>
-				<div class="flex flex-col px-8 pt-4">
-					<button class="flex items-center justify-center bg-blue-600 text-sm font-medium w-full h-10 rounded text-blue-50 hover:bg-blue-700">Pagar</button>
-					
+					<div class="flex items-center px-8 mt-8">
+						<input id="termsConditions" type="checkbox">
+						<label class="text-xs text-gray-500 ml-2" for="termsConditions">Acepto los terminos y condiciones</label>
+					</div>
+					<div class="flex flex-col px-8 pt-4">
+						<button class="flex items-center justify-center bg-blue-600 text-sm font-medium w-full h-10 rounded text-blue-50 hover:bg-blue-700">Pagar</button>
+
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+    </form>
 </section>
 
 

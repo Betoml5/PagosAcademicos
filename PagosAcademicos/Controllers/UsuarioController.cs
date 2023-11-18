@@ -23,38 +23,31 @@ namespace PagosAcademicos.Controllers
         {
             //TODO
             //Aqui tendremos que traenos los datos del usuario logeado
-            //var pagos = pagoctx
-            //    .GetAll()
-            //    .Select(x => new PagoModel()
-            //{
-            //    Id=x.Id,
-            //    Concepto=x.Concepto,
-            //    Monto=x.Monto,
-            //    Fecha=x.Fecha,
-            //}).OrderBy(x => x.Fecha);
+            var pagos = pagoctx
+                .GetAll()
+                .Select(x => new PagoModel()
+                {
+                    Id = x.Id,
+                    Concepto = x.Concepto,
+                    Monto = x.Monto,
+                    Fecha = x.Fecha,
+                }).OrderBy(x => x.Fecha);
 
-            var usuario = usuarioctx.Get(1);
 
-            if (usuario != null)
+
+
+            var vm = new IndexUsuarioViewModel()
             {
-				var pagos = usuario.Pago.Select(x => new PagoModel()
-				{
-					Id = x.Id,
-					Concepto = x.Concepto,
-					Monto = x.Monto,
-					Fecha = x.Fecha,
-				}).OrderBy(x => x.Fecha);
+                Nombre = "Juan",
+                Estatus = false,
+                Pagos = pagos
 
-				var vm = new IndexUsuarioViewModel()
-				{
-					Nombre = "Juan",
-					Estatus = false,
-					Pagos = pagos
-				};
+
+            };
+
             return View(vm);
-			}
 
-           return RedirectToAction("Index", "Home");
+
 
         
 
