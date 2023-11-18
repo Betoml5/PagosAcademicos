@@ -5,53 +5,132 @@
     Layout = "AdminLayout";
 }
 
-<section class="max-w-5xl mx-auto">
-    <h3 class="text-2xl my-4">Pagos</h3>
-    <div class="overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                <tr>
-                   
-                    <th scope="col" class="py-3 px-6">
-                        Id de transacción
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        Usuario
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        Monto
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        Fecha
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        Editar
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        Eliminar
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-            
-                <tr 
-                    class="bg-white border-b ">
-                 
-                    <td class="py-4 px-6">{payment.paymentIntentId}</td>
-                    <td class="py-4 px-6">
-                        {payment.user.name} {payment.user.lastName}
-                    </td>
-                    <td class="py-4 px-6">{amount}</td>
-                    <td class="py-4 px-6">{date}</td>
-                    <td class="py-4 px-6">
-                        <button>Editar</button>
-                    </td>
-                    <td class="py-4 px-6">
-                        <button>Eliminar</button>
-                    </td>
-                </tr>
-              
-            </tbody>
-        </table>
+<section class="max-w-5xl mx-auto my-10">
+    <h3 class="titulo">Información</h3>
+    <div class="card-wrap">
+        <div class="info">
+            <div class="card-header">
+                <div class="info-card">
+                    <span class="titulo-card">
+                        Monto más alto
+                    </span>
+                    <span class="detalles-card">$1000.00</span>
+                </div>
+
+                <i class="fa-solid fa-money-bill-trend-up icon"></i>
+
+            </div>
+            <span class="detalles">
+                ID del monto
+            </span>
+        </div>
+        <div class="info">
+            <div class="card-header">
+                <div class="info-card">
+                    <span class="titulo-card">
+                        Último pago
+                    </span>
+                    <span class="detalles-card">$1000.00</span>
+                </div>
+
+                <i class="fa-solid fa-receipt icon"></i>
+
+            </div>
+            <span class="detalles">
+                ID del monto
+            </span>
+        </div>
+        <div class="info">
+            <div class="card-header">
+                <div class="info-card">
+                    <span class="titulo-card">
+                        Num de Pagos
+                    </span>
+                    <span class="detalles-card">60</span>
+                </div>
+                <i class="fa-solid fa-money-bills icon"></i>
+
+
+            </div>
+            <span class="detalles">
+                Pagos realizados
+            </span>
+        </div>
+        <div class="info">
+            <div class="card-header">
+                <div class="info-card">
+                    <span class="titulo-card">
+                        Fecha del último pago
+                    </span>
+                    <span class="detalles-card">2023-11-02</span>
+                </div>
+                <i class="fa-solid fa-calendar-days icon"></i>
+
+            </div>
+            <span class="detalles">
+                último pago
+            </span>
+        </div>
     </div>
-</section>
+
+    <div class="tabla">
+        <h3 class="maintitle">Datos de pagos</h3>
+        <div class="contenido-tabla">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo de transacción</th>
+                        <th>Concepto</th>
+                        <th>Monto</th>
+                        <th>Id del pago</th>
+                        <th>Nombre del usuario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            2023-11-02
+                        </td>
+                        <td>
+                            Paypal
+                        </td>
+                        <td>
+                            Ingreso
+                        </td>
+                        <td>
+                            $2000
+                        </td>
+                        <td>
+                            Id del usuario
+                        </td>
+                        <td>
+                            Nombre del usuario
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2023-11-02
+                        </td>
+                        <td>
+                            Paypal
+                        </td>
+                        <td>
+                            Ingreso
+                        </td>
+                        <td>
+                            $2000
+                        </td>
+                        <td>
+                            Id del usuario
+                        </td>
+                        <td>
+                            Nombre del usuario
+                        </td>
+                    </tr>
+                </tbody>
+              
+            </table>
+        </div>
+    </div>
+    </section>
