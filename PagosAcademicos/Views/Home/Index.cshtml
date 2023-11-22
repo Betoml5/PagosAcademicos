@@ -1,11 +1,11 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     Layout = "MainLayout";
 }
 
-<section class="max-w-5xl mx-auto">
+<section class="max-w-5xl mx-auto mt-20">
     <section class="flex flex-col  p-6 mt-4 rounded-md  headline lg:flex-row md:items-center md:justify-between">
         <div class="text-secondary_blue font-light ">
             <span class="font-bold text-4xl">Simple</span>,
@@ -15,14 +15,12 @@
                 Simplificamos el pago de tu inscripción.
             </p>
             <a to="/pagar"
-                  class="self-start shadow-md bg-secondary_blue px-8 py-2 mt-4 rounded-full text-white hover:shadow-xl hover:bg-secondary_blue_light transition duration-500 ease-in-out transform hover:-translate-y-1 ">
-            Paga aquí
+                class="self-start shadow-md bg-secondary_blue px-8 py-2 mt-4 rounded-full text-white hover:shadow-xl hover:bg-secondary_blue_light transition duration-500 ease-in-out transform hover:-translate-y-1 ">
+                Paga aquí
             </a>
         </div>
 
-        <img src="/assets/images/payment-person.svg"
-             alt="hero"
-             class="mt-4 w-60 hidden md:block" />
+        <img src="/assets/images/payment-person.svg" alt="hero" class="mt-4 w-60 hidden md:block" />
     </section>
     <section class="flex flex-col p-6 mt-4 rounded-md  headline_two">
         <div>
@@ -33,8 +31,8 @@
                 <li class="mt-4">
                     <p class="text-secondary_blue font-light text-2xl">
                         <span class="font-bold text-2xl">1. </span>
-                        <a  class="underline">
-                        Inicia sesión
+                        <a class="underline">
+                            Inicia sesión
                         </a>
                         en la plataforma.
                     </p>
@@ -58,26 +56,17 @@
         <div class="p-6  rounded-md ">
             <h2 class="text-2xl">Inicia sesión</h2>
             <form class="flex flex-col mt-4 justify-center">
-                <label  for="email" class="my-2">
+                <label for="email" class="my-2">
                     Correo electrónico
                 </label>
-                <input 
-                       type="text"
-                       placeholder="Correo electrónico"
-                       class="p-4 rounded-md my-2 shadow-xl border "
-                      />
-            
+                <input type="text" placeholder="Correo electrónico" class="p-4 rounded-md my-2 shadow-xl border " />
+
                 <label for="password" class="my-2">
                     Contraseña
                 </label>
-                <input
-                    type="password"
-                    placeholder="Contraseña"
-                    class="p-4 rounded-md my-2 shadow-xl border"
-                />
-              
-                <button 
-                    class="mt-4 bg-primary p-4 text-white font-poppins font-bold rounded-lg hover:bg-opacity-80">
+                <input type="password" placeholder="Contraseña" class="p-4 rounded-md my-2 shadow-xl border" />
+
+                <button class="mt-4 bg-primary p-4 text-white font-poppins font-bold rounded-lg hover:bg-opacity-80">
                     Iniciar Sesión
                 </button>
             </form>

@@ -1,0 +1,12 @@
+{
+  "name": "pagosacademicos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css:build": "npx tailwindcss -i ./wwwroot/site.css -o ./wwwroot/styles.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

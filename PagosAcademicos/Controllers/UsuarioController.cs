@@ -7,8 +7,6 @@ namespace PagosAcademicos.Controllers
 {
     public class UsuarioController : Controller
 
-
-        
     {
         private readonly Repository<Usuario> usuarioctx;
         private readonly Repository<Pago> pagoctx;
@@ -22,7 +20,7 @@ namespace PagosAcademicos.Controllers
         public IActionResult Index()
         {
             //TODO
-            //Aqui tendremos que traenos los datos del usuario logeado
+            //Aqui tendremos que tráenos los datos del usuario logeado
             var pagos = pagoctx
                 .GetAll()
                 .Select(x => new PagoModel()
