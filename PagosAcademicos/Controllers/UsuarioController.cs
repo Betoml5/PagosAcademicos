@@ -15,7 +15,6 @@ namespace PagosAcademicos.Controllers
         {
             this.usuarioctx = usuarioctx;
             this.pagoctx = pagoctx;
-
         }
         public IActionResult Index()
         {
@@ -31,9 +30,6 @@ namespace PagosAcademicos.Controllers
                     Fecha = x.Fecha,
                 }).OrderBy(x => x.Fecha);
 
-
-
-
             var vm = new IndexUsuarioViewModel()
             {
                 Nombre = "Juan",
@@ -45,12 +41,15 @@ namespace PagosAcademicos.Controllers
 
             return View(vm);
 
-
-
-        
-
         }
 
+        [Route("usuario/pago/{id}")]
+        public IActionResult DetallesPago(int Id)
+        {
+            var pago = pagoctx.Get(Id);
+
+            return View(pago);
+        }
 
 
 

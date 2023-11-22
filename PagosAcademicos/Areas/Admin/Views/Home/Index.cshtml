@@ -1,4 +1,5 @@
-﻿@*
+﻿@model PagosAcademicos.Areas.Admin.Models.ViewModels.IndexAdminViewModel
+@*
 For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -14,7 +15,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                     <span class="titulo-card">
                         Monto más alto
                     </span>
-                    <span class="detalles-card">$1000.00</span>
+                    <span class="detalles-card">@Model.MontoMasAlto</span>
                 </div>
 
                 <i class="fa-solid fa-money-bill-trend-up icon"></i>
@@ -23,6 +24,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
             <span class="detalles">
                 ID del monto
             </span>
+
         </div>
         <div class="info">
             <div class="card-header">
@@ -30,7 +32,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                     <span class="titulo-card">
                         Último pago
                     </span>
-                    <span class="detalles-card">$1000.00</span>
+                    <span class="detalles-card">@Model.MontoMasAlto</span>
                 </div>
 
                 <i class="fa-solid fa-receipt icon"></i>
@@ -44,9 +46,9 @@ For more information on enabling MVC for empty projects, visit https://go.micros
             <div class="card-header">
                 <div class="info-card">
                     <span class="titulo-card">
-                        Num de Pagos
+                        Numero de pagos
                     </span>
-                    <span class="detalles-card">60</span>
+                    <span class="detalles-card">@Model.NumeroPagos</span>
                 </div>
                 <i class="fa-solid fa-money-bills icon"></i>
 
@@ -62,13 +64,13 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                     <span class="titulo-card">
                         Fecha del último pago
                     </span>
-                    <span class="detalles-card">2023-11-02</span>
+                    <span class="">@Model.FechaUltimoPago.ToLongDateString()</span>
                 </div>
                 <i class="fa-solid fa-calendar-days icon"></i>
 
             </div>
             <span class="detalles">
-                último pago
+                Ultimo pago
             </span>
         </div>
     </div>
@@ -79,55 +81,40 @@ For more information on enabling MVC for empty projects, visit https://go.micros
             <table>
                 <thead>
                     <tr>
+                        <th>Id del pago</th>
                         <th>Fecha</th>
                         <th>Tipo de transacción</th>
                         <th>Concepto</th>
                         <th>Monto</th>
-                        <th>Id del pago</th>
                         <th>Nombre del usuario</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            2023-11-02
-                        </td>
-                        <td>
-                            Paypal
-                        </td>
-                        <td>
-                            Ingreso
-                        </td>
-                        <td>
-                            $2000
-                        </td>
-                        <td>
-                            Id del usuario
-                        </td>
-                        <td>
-                            Nombre del usuario
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            2023-11-02
-                        </td>
-                        <td>
-                            Paypal
-                        </td>
-                        <td>
-                            Ingreso
-                        </td>
-                        <td>
-                            $2000
-                        </td>
-                        <td>
-                            Id del usuario
-                        </td>
-                        <td>
-                            Nombre del usuario
-                        </td>
-                    </tr>
+                    @foreach (var item in Model.Pagos)
+                    {
+                        <tr>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                @item.Fecha.ToString("yyyy-MM-dd")
+                            </td>
+                            <td>
+                                @item.TipoPago.Nombre
+                            </td>
+                            <td>
+                                @item.Concepto
+                            </td>
+                            <td>
+                                @item.Monto
+                            </td>
+
+                            <td>
+                                @item.Usuario.Nombre
+                            </td>
+                        </tr>
+                    }
+
                 </tbody>
 
             </table>

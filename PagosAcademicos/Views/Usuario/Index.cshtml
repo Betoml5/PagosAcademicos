@@ -1,6 +1,6 @@
 ﻿@model PagosAcademicos.Models.ViewModels.IndexUsuarioViewModel
 @*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 
@@ -10,7 +10,7 @@
 
 <section class="max-w-xl mx-2 md:mx-auto m-4 ">
     <h3 class="text-3xl mb-4 ">Hola, @Model.Nombre</h3>
-    
+
     @if (Model.Estatus)
     {
         <p class="bg-red-500 text-white shadow-2xl p-2 rounded-md">
@@ -32,33 +32,36 @@
     <hr class="my-4 border" />
     <h2 class="text-2xl mb-4">Historial de pagos</h2>
 
-    @if (Model.Pagos?.Count() > 0)
+    @if (Model.Pagos != null)
     {
-      
+        @foreach (var pago in Model.Pagos)
+        {
 
-        <section>
-            <div class=" bg-white rounded-md p-4 my-2 shadow-xl">
-                <p class="font-semibold text-2xl mb-2">
-                    Pago de inscripcion
-                </p>
-                <p>
-                    <span>Cuota:</span> $
-                    $1000
-                </p>
-                <p class="mb-2">
-                    Pago realizado el 12 de abril del 2023
-                </p>
+            <section>
+                <div class=" bg-white rounded-md p-4 my-2 shadow-xl">
+                    <p class="font-semibold text-2xl mb-2">
+                        @pago.Concepto
+                    </p>
+                    <p>
+                        <span>Cuota:</span>
+                        @pago.Monto.ToString("c")
+                    </p>
+                    <p class="mb-2">
+                        @pago.Fecha
+                    </p>
 
-                <a href="~/Admin/Pago/" class="underline">
-                    Ver recibo
-                </a>
-                <p class="w-fit mt-2  text-green-500 font-semibold  rounded-full">
-                    Pagado
-                </p>
-            </div>
+                    <a href="~/Usuario/Pago/Detalles/@pago.Id" class=" underline">
+                        Ver recibo
+                    </a>
+                    <p class="w-fit mt-2  text-green-500 font-semibold  rounded-full">
+                        Pagado
+                    </p>
+                </div>
 
 
-        </section>
+            </section>
+        }
+
     }
     else
     {
