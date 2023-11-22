@@ -17,6 +17,7 @@ builder.Services.AddDbContext<PagosacademicosContext>(
 
 builder.Services.AddTransient<Repository<Usuario>>();
 builder.Services.AddTransient<Repository<Pago>>();
+builder.Services.AddTransient<PagoRepository>();
 
 
 var app = builder.Build();

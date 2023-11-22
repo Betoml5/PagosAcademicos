@@ -22,4 +22,13 @@
     <PackageReference Include="Pomelo.EntityframeworkCore.Mysql" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+  <UpToDateCheckBuilt Include="wwwroot/site.css" Set="Css" />
+  <UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
+</ItemGroup>
+
+<Target Name="Tailwind" BeforeTargets="Build">
+  <Exec Command="npm run css:build"/>
+</Target>
+
 </Project>

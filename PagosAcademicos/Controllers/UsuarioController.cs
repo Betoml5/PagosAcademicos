@@ -7,8 +7,6 @@ namespace PagosAcademicos.Controllers
 {
     public class UsuarioController : Controller
 
-
-        
     {
         private readonly Repository<Usuario> usuarioctx;
         private readonly Repository<Pago> pagoctx;
@@ -17,12 +15,11 @@ namespace PagosAcademicos.Controllers
         {
             this.usuarioctx = usuarioctx;
             this.pagoctx = pagoctx;
-
         }
         public IActionResult Index()
         {
             //TODO
-            //Aqui tendremos que traenos los datos del usuario logeado
+            //Aqui tendremos que tráenos los datos del usuario logeado
             var pagos = pagoctx
                 .GetAll()
                 .Select(x => new PagoModel()
@@ -32,9 +29,6 @@ namespace PagosAcademicos.Controllers
                     Monto = x.Monto,
                     Fecha = x.Fecha,
                 }).OrderBy(x => x.Fecha);
-
-
-
 
             var vm = new IndexUsuarioViewModel()
             {
@@ -47,12 +41,15 @@ namespace PagosAcademicos.Controllers
 
             return View(vm);
 
-
-
-        
-
         }
 
+        [Route("usuario/pago/{id}")]
+        public IActionResult DetallesPago(int Id)
+        {
+            var pago = pagoctx.Get(Id);
+
+            return View(pago);
+        }
 
 
 
