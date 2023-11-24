@@ -17,6 +17,8 @@ builder.Services.AddDbContext<PagosacademicosContext>(
 
 builder.Services.AddTransient<Repository<Usuario>>();
 builder.Services.AddTransient<Repository<Pago>>();
+builder.Services.AddTransient<Repository<TipoPago>>();
+builder.Services.AddTransient<TipoPagoRepository>();
 builder.Services.AddTransient<PagoRepository>();
 
 

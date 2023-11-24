@@ -9,8 +9,8 @@ namespace PagosAcademicos.Areas.Admin.Controllers
     public class PagosController : Controller
     {
 
-        private readonly Repository<Pago> ctx;
-        public PagosController(Repository<Pago> ctx)
+        private readonly PagoRepository ctx;
+        public PagosController(PagoRepository ctx)
         {
             this.ctx = ctx;
         }
