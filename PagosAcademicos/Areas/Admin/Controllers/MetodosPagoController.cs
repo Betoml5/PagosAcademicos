@@ -118,12 +118,24 @@ namespace PagosAcademicos.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Editar(TipoPago vm)
         {
-            var tipoPago = tipoPagoctx.Get(vm.Id);
+            var pago = tipoPagoctx.Get(vm.Id);
+            var tipoPagoExistenteNombre = tipoPagoctx.GetByNombre(vm.Nombre);
 
-            if (tipoPago != null)
+            if (tipoPagoExistenteNombre != null)
             {
-                tipoPago.Nombre = vm.Nombre;
-                tipoPagoctx.Update(tipoPago);
+                ModelState.AddModelError("", "Ese tipo de pago ya existe");
+            }
+
+            if (string.IsNullOrWhiteSpace(vm.Nombre))
+            {
+                ModelState.AddModelError("", "El nombre es requerido");
+            }
+
+            if (ModelState.IsValid)
+            {
+
+                pago.Nombre = vm.Nombre;
+                tipoPagoctx.Update(pago);
                 return RedirectToAction("Index");
             }
 
