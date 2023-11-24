@@ -1,48 +1,44 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿@model PagosAcademicos
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-Layout = "MainLayout";
+	Layout = "MainLayout";
 }
 
 <section class="flex items-center justify-center text-gray-800 p-8">
 	<!-- Component Start -->
-    <form>
+	<form action="~/pagos/pagar" method="post">
 		<div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8 w-full max-w-screen-lg">
 			<div class="lg:col-span-2">
 				<h2 class="text-sm font-medium">Metodo de pago</h2>
 				@*Aqui vamos a iterar los metodos de pago*@
 				<div class="bg-white rounded mt-4 shadow-lg">
-
-
 					<div class="border-t">
 						<div class="flex items-center px-8 py-5">
-							<input
-								class=""
-								name="tipoPago"
-								value="paypal"
-								type="radio">
+							<input class="" name="tipoPago" value="paypal" type="radio">
 							<label class="text-sm font-medium ml-4">PayPal</label>
 						</div>
 						<div class="flex items-center px-8 py-5">
-							<input
-							name="tipoPago"
-							value="tarjetaCredito"
-							type="radio">
+							<input name="tipoPago" value="tarjetaCredito" type="radio">
 							<label class="text-sm font-medium ml-4">Tarjeta de credito</label>
 						</div>
 						<div class="grid grid-cols-2 gap-4 px-8 pb-8">
 							<div class="col-span-2">
 								<label class="text-xs font-semibold" for="cardNumber">Numero de la tarjeta</label>
-								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text" placeholder="0000 0000 0000 0000">
+								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm"
+									type="text" placeholder="0000 0000 0000 0000">
 							</div>
 							<div class="">
 								<label class="text-xs font-semibold" for="cardNumber">Fecha de expiración</label>
-								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text" placeholder="MM/YY">
+								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm"
+									type="text" placeholder="MM/YY" maxlength="5">
 							</div>
 							<div class="">
 								<label class="text-xs font-semibold" for="cardNumber">CVC/CVV</label>
-								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="password" placeholder="...">
+								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm"
+									type="password" placeholder="...">
 							</div>
 						</div>
 					</div>
@@ -62,16 +58,16 @@ Layout = "MainLayout";
 					</div>
 					<div class="flex items-center px-8 mt-8">
 						<input id="termsConditions" type="checkbox">
-						<label class="text-xs text-gray-500 ml-2" for="termsConditions">Acepto los terminos y condiciones</label>
+						<label class="text-xs text-gray-500 ml-2" for="termsConditions">Acepto los terminos y
+							condiciones</label>
 					</div>
 					<div class="flex flex-col px-8 pt-4">
-						<button class="flex items-center justify-center bg-blue-600 text-sm font-medium w-full h-10 rounded text-blue-50 hover:bg-blue-700">Pagar</button>
+						<button
+							class="flex items-center justify-center bg-blue-600 text-sm font-medium w-full h-10 rounded text-blue-50 hover:bg-blue-700">Pagar</button>
 
 					</div>
 				</div>
 			</div>
 		</div>
-    </form>
+	</form>
 </section>
-
-
