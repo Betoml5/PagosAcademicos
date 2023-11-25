@@ -1,4 +1,4 @@
-﻿@model PagosAcademicos
+﻿@model PagosAcademicos.Models.ViewModels.AgregarPagoViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @*
 For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,29 +16,28 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 				@*Aqui vamos a iterar los metodos de pago*@
 				<div class="bg-white rounded mt-4 shadow-lg">
 					<div class="border-t">
-						<div class="flex items-center px-8 py-5">
-							<input class="" name="tipoPago" value="paypal" type="radio">
-							<label class="text-sm font-medium ml-4">PayPal</label>
-						</div>
-						<div class="flex items-center px-8 py-5">
-							<input name="tipoPago" value="tarjetaCredito" type="radio">
-							<label class="text-sm font-medium ml-4">Tarjeta de credito</label>
-						</div>
+						@foreach (var item in Model.MetodosPago)
+						{
+							<div class="flex items-center px-8 py-5">
+								<input class="" asp-for="MetodoDePagoId" value="@item.Id" type="radio">
+								<label class="text-sm font-medium ml-4">@item.Nombre</label>
+							</div>
+						}
 						<div class="grid grid-cols-2 gap-4 px-8 pb-8">
 							<div class="col-span-2">
 								<label class="text-xs font-semibold" for="cardNumber">Numero de la tarjeta</label>
 								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm"
-									type="text" placeholder="0000 0000 0000 0000">
+									type="text" placeholder="0000 0000 0000 0000" asp-for="NumeroTarjeta">
 							</div>
 							<div class="">
 								<label class="text-xs font-semibold" for="cardNumber">Fecha de expiración</label>
 								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm"
-									type="text" placeholder="MM/YY" maxlength="5">
+									type="text" placeholder="MM/YY" maxlength="5" asp-for="FechaExpiracion">
 							</div>
 							<div class="">
 								<label class="text-xs font-semibold" for="cardNumber">CVC/CVV</label>
 								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm"
-									type="password" placeholder="...">
+									type="password" placeholder="..." asp-for="CVV">
 							</div>
 						</div>
 					</div>
@@ -67,7 +66,11 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 
 					</div>
 				</div>
+				<div class="text-red-500 bg-white p-4">
+					@Html.ValidationSummary(true)
+				</div>
 			</div>
+
 		</div>
 	</form>
 </section>

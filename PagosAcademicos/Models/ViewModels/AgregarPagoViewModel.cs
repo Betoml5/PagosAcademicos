@@ -5,10 +5,10 @@ namespace PagosAcademicos.Models.ViewModels
     {
         public int MetodoDePagoId { get; set; }
         public decimal Monto { get; set; }
-        public string Concepto { get; set; } = null!;
-        public string NumeroTarjeta { get; set; } = null!;
-        public string FechaExpiracion { get; set; } = null!;
-        public string CVV { get; set; } = null!;
+        public string? Concepto { get; set; }
+        public string? NumeroTarjeta { get; set; }
+        public string? FechaExpiracion { get; set; }
+        public string? CVV { get; set; }
 
         public IEnumerable<MetodoPago>? MetodosPago { get; set; }
 
