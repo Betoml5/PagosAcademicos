@@ -43,12 +43,26 @@ namespace PagosAcademicos.Controllers
 
         }
 
-        [Route("usuario/pago/{id}")]
-        public IActionResult DetallesPago(int Id)
+        [Route("Usuario/detalles-pago/{id}")]
+        public IActionResult DetallesPago(int id)
         {
-            var pago = pagoctx.Get(Id);
+            var pago = pagoctx.Get(id);
 
-            return View(pago);
+            if (pago == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var vm = new DetallesPagoViewModel()
+            {
+                Id = pago.Id,
+                Monto = pago.Monto,
+                Fecha = pago.Fecha.ToString("dd/MM/yyyy"),
+
+                Concepto = pago.Concepto
+            };
+
+            return View(vm);
         }
 
 

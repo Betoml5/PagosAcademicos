@@ -57,6 +57,7 @@ namespace PagosAcademicos.Controllers
         public IActionResult Pagar(AgregarPagoViewModel vm)
         {
 
+
             if (vm.MetodoDePagoId == 0)
             {
                 ModelState.AddModelError("", "El metodo de pago es requerido");
@@ -105,7 +106,7 @@ namespace PagosAcademicos.Controllers
                     ModelState.AddModelError("", "El mes de expiracion debe ser un numero entre 1 y 12");
                 }
 
-                if (int.Parse(anio) < 21 || int.Parse(anio) > 30)
+                if (int.Parse(anio) < 22 || int.Parse(anio) > 30)
                 {
                     ModelState.AddModelError("", "El año de expiracion debe ser un numero entre 21 y 30");
                 }
@@ -142,5 +143,7 @@ namespace PagosAcademicos.Controllers
 
             return View(vm);
         }
+
+
     }
 }

@@ -27,12 +27,15 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 							<div class="col-span-2">
 								<label class="text-xs font-semibold" for="cardNumber">Numero de la tarjeta</label>
 								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm"
-									type="text" placeholder="0000 0000 0000 0000" asp-for="NumeroTarjeta">
+									type="text" placeholder="0000 0000 0000 0000" asp-for="NumeroTarjeta"
+									maxlength="16">
 							</div>
 							<div class="">
 								<label class="text-xs font-semibold" for="cardNumber">Fecha de expiración</label>
-								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm"
-									type="text" placeholder="MM/YY" maxlength="5" asp-for="FechaExpiracion">
+
+								<input pattern="\d{2}/\d{2}"
+									class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm" type="text"
+									placeholder="MM/YY" maxlength="5" asp-for="FechaExpiracion">
 							</div>
 							<div class="">
 								<label class="text-xs font-semibold" for="cardNumber">CVC/CVV</label>
