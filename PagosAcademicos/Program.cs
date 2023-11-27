@@ -20,6 +20,7 @@ builder.Services.AddTransient<Repository<Pago>>();
 builder.Services.AddTransient<Repository<TipoPago>>();
 builder.Services.AddTransient<TipoPagoRepository>();
 builder.Services.AddTransient<PagoRepository>();
+builder.Services.AddTransient<UsuarioRepository>();
 
 
 var app = builder.Build();
