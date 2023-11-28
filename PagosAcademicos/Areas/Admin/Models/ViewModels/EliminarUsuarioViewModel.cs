@@ -1,6 +1,6 @@
 
 
-namespace PagosAcademicos.Models.ViewModels
+namespace PagosAcademicos.Areas.Admin.Models.ViewModels
 {
     public class EliminarUsuarioViewModel
     {

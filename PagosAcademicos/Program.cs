@@ -21,6 +21,8 @@ builder.Services.AddTransient<Repository<TipoPago>>();
 builder.Services.AddTransient<TipoPagoRepository>();
 builder.Services.AddTransient<PagoRepository>();
 builder.Services.AddTransient<UsuarioRepository>();
+builder.Services.AddTransient<Repository<Carrera>>();
+builder.Services.AddTransient<Repository<Semestre>>();
 
 
 var app = builder.Build();

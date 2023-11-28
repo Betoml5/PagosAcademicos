@@ -22,5 +22,10 @@ namespace PagosAcademicos.Repositories
             .Include(x => x.Semestre);
         }
 
+        public Usuario? GetByNombre(string nombre)
+        {
+            return ctx.Usuario.FirstOrDefault(x => x.Nombre == nombre);
+        }
+
     }
 }
