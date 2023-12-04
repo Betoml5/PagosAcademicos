@@ -1,4 +1,6 @@
-﻿@*
+﻿@model PagosAcademicos.Models.ViewModels.IndexLoginViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@*
 For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -55,18 +57,18 @@ For more information on enabling MVC for empty projects, visit https://go.micros
     <section class="my-4 signin">
         <div class="p-6  rounded-md ">
             <h2 class="text-2xl">Inicia sesión</h2>
-            <form class="flex flex-col mt-4 justify-center">
+            <form class="flex flex-col mt-4 justify-center" method="post" action="~/home/index">
                 <label for="email" class="my-2">
                     Correo electrónico
                 </label>
-                <input type="text" placeholder="Correo electrónico" class="p-4 rounded-md my-2 shadow-xl border " />
+                <input type="text" placeholder="Correo electrónico" class="p-4 rounded-md my-2 shadow-xl border " asp-for="Correo" />
 
                 <label for="password" class="my-2">
                     Contraseña
                 </label>
-                <input type="password" placeholder="Contraseña" class="p-4 rounded-md my-2 shadow-xl border" />
+                <input type="password" placeholder="Contraseña" class="p-4 rounded-md my-2 shadow-xl border" asp-for="Contrasena" />
 
-                <button class="mt-4 bg-primary p-4 text-white font-poppins font-bold rounded-lg hover:bg-opacity-80">
+                <button class="mt-4 bg-primary p-4 text-white font-poppins font-bold rounded-lg hover:bg-opacity-80" type="submit">
                     Iniciar Sesión
                 </button>
             </form>

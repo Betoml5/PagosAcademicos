@@ -5,8 +5,8 @@ namespace PagosAcademicos.Models.Entities;
 
 public partial class Pago
 {
-    public int Id { get; set; } 
- 
+    public int Id { get; set; }
+
     public decimal Monto { get; set; }
 
     public string Concepto { get; set; } = null!;

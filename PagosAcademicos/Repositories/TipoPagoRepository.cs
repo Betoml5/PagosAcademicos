@@ -7,7 +7,7 @@ using PagosAcademicos.Repositories;
 
 public class TipoPagoRepository : Repository<TipoPago>
 {
-    public TipoPagoRepository(PagosacademicosContext ctx) : base(ctx)
+    public TipoPagoRepository(FreedbClienteContext ctx) : base(ctx)
     {
     }
 

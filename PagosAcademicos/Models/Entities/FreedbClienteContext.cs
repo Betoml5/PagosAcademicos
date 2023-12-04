@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PagosAcademicos.Models.Entities;
 
-public partial class PagosacademicosContext : DbContext
+public partial class FreedbClienteContext : DbContext
 {
-    public PagosacademicosContext()
+    public FreedbClienteContext()
     {
     }
 
-    public PagosacademicosContext(DbContextOptions<PagosacademicosContext> options)
+    public FreedbClienteContext(DbContextOptions<FreedbClienteContext> options)
         : base(options)
     {
     }
@@ -19,31 +19,32 @@ public partial class PagosacademicosContext : DbContext
 
     public virtual DbSet<Pago> Pago { get; set; }
 
+    public virtual DbSet<Roles> Roles { get; set; }
+
     public virtual DbSet<Semestre> Semestre { get; set; }
 
     public virtual DbSet<TipoPago> TipoPago { get; set; }
 
     public virtual DbSet<Usuario> Usuario { get; set; }
 
-    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-    //        => optionsBuilder.UseMySql("server=localhost;user=root;password=root;database=pagosacademicos", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
-    
-    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-    //            => optionsBuilder.UseMySql("server = sql.freedb.tech;user = freedb_FirtsUser; database = freedb_cliente; password = 7Z%@TYfXYnxjs4b", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseMySql("server=sql.freedb.tech;user=freedb_FirtsUser;database=freedb_cliente;password=7Z%@TYfXYnxjs4b", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.35-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .UseCollation("utf8mb3_general_ci")
-            .HasCharSet("utf8mb3");
+            .UseCollation("utf8mb4_0900_ai_ci")
+            .HasCharSet("utf8mb4");
 
         modelBuilder.Entity<Carrera>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("carrera");
+            entity
+                .ToTable("carrera")
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Nombre)
@@ -55,7 +56,10 @@ public partial class PagosacademicosContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("pago");
+            entity
+                .ToTable("pago")
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
             entity.HasIndex(e => e.TipoPagoId, "fk_pago_tipo_pago1_idx");
 
@@ -70,7 +74,7 @@ public partial class PagosacademicosContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("fecha");
             entity.Property(e => e.Monto)
-                .HasPrecision(2, 2)
+                .HasPrecision(7, 2)
                 .HasColumnName("monto");
             entity.Property(e => e.TipoPagoId).HasColumnName("tipo_pago_id");
             entity.Property(e => e.UsuarioId).HasColumnName("usuario_id");
@@ -86,11 +90,26 @@ public partial class PagosacademicosContext : DbContext
                 .HasConstraintName("fk_pago_usuario1");
         });
 
+        modelBuilder.Entity<Roles>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("roles");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(15)
+                .HasColumnName("nombre");
+        });
+
         modelBuilder.Entity<Semestre>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("semestre");
+            entity
+                .ToTable("semestre")
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Nombre)
@@ -102,7 +121,10 @@ public partial class PagosacademicosContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("tipo_pago");
+            entity
+                .ToTable("tipo_pago")
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Nombre)
@@ -114,9 +136,14 @@ public partial class PagosacademicosContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("usuario");
+            entity
+                .ToTable("usuario")
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
             entity.HasIndex(e => e.CarreraId, "fk_usuario_carrera1_idx");
+
+            entity.HasIndex(e => e.RolId, "fk_usuario_rol_idx");
 
             entity.HasIndex(e => e.SemestreId, "fk_usuario_semestre_idx");
 
@@ -125,18 +152,31 @@ public partial class PagosacademicosContext : DbContext
                 .HasMaxLength(45)
                 .HasColumnName("apellido");
             entity.Property(e => e.CarreraId).HasColumnName("carrera_id");
-            entity.Property(e => e.Estatus)
-                .HasColumnType("bit(1)")
-                .HasColumnName("estatus");
+            entity.Property(e => e.Contrasena)
+                .HasMaxLength(128)
+                .IsFixedLength()
+                .HasColumnName("contrasena");
+            entity.Property(e => e.Correo)
+                .HasMaxLength(200)
+                .HasColumnName("correo");
+            entity.Property(e => e.Estatus).HasColumnName("estatus");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(45)
                 .HasColumnName("nombre");
+            entity.Property(e => e.RolId)
+                .HasDefaultValueSql("'2'")
+                .HasColumnName("rol_id");
             entity.Property(e => e.SemestreId).HasColumnName("semestre_id");
 
             entity.HasOne(d => d.Carrera).WithMany(p => p.Usuario)
                 .HasForeignKey(d => d.CarreraId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_usuario_carrera1");
+
+            entity.HasOne(d => d.Rol).WithMany(p => p.Usuario)
+                .HasForeignKey(d => d.RolId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_usuario_rol");
 
             entity.HasOne(d => d.Semestre).WithMany(p => p.Usuario)
                 .HasForeignKey(d => d.SemestreId)

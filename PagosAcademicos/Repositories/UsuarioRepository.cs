@@ -9,7 +9,7 @@ namespace PagosAcademicos.Repositories
 
     public class UsuarioRepository : Repository<Usuario>
     {
-        public UsuarioRepository(PagosacademicosContext ctx) : base(ctx)
+        public UsuarioRepository(FreedbClienteContext ctx) : base(ctx)
         {
         }
 
@@ -19,7 +19,8 @@ namespace PagosAcademicos.Repositories
             return ctx.Usuario
             .OrderBy(x => x.Nombre)
             .Include(x => x.Carrera)
-            .Include(x => x.Semestre);
+            .Include(x => x.Semestre)
+            .Include(x=>x.Rol);
         }
 
         public Usuario? GetByNombre(string nombre)
