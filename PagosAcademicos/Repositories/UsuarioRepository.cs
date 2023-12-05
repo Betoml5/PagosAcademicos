@@ -28,5 +28,6 @@ namespace PagosAcademicos.Repositories
             return ctx.Usuario.FirstOrDefault(x => x.Nombre == nombre);
         }
 
+        
     }
 }

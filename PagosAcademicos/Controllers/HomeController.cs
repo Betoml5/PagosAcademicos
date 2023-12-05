@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PagosAcademicos.Controllers
 {
-   
+
     public class HomeController : Controller
     {
         public HomeController(UsuarioRepository usuarioRepository)
@@ -51,6 +51,9 @@ namespace PagosAcademicos.Controllers
                     {
                         IsPersistent = true
                     });
+                   
+                    
+
                     if (user.Rol.Nombre == "Administrador")
                     {
                         return RedirectToAction("Index", "Home", new { area = "Admin" });
@@ -71,7 +74,7 @@ namespace PagosAcademicos.Controllers
             return View();
         }
 
-    
+
 
 
     }
