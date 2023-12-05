@@ -21,12 +21,39 @@ namespace PagosAcademicos.Controllers
 
         public IActionResult Index()
         {
+            if (User.Identity != null)
+            {
+                var claimEncontrada = User.Identities
+        .SelectMany(ci => ci.Claims)
+        .FirstOrDefault(c => c.Type == "Id");
+                string IdClaim = "0";
+                if (claimEncontrada != null) { IdClaim = claimEncontrada.Value; }
+
+                var queryUser = UsuarioRepository.GetAll().Where(x => x.Id == int.Parse(IdClaim)).FirstOrDefault();
+
+                
+                if (queryUser != null)
+                {
+                    string RolUsuario = queryUser.Rol.Nombre;
+
+                    if (RolUsuario == "Administrador")
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    }
+                    else if (RolUsuario == "Usuario")
+                    {
+                        return RedirectToAction("Index", "Usuario");
+                    }
+                }
+            }
+
             IndexLoginViewModel vm = new IndexLoginViewModel();
             return View(vm);
         }
         [HttpPost]
         public IActionResult Index(IndexLoginViewModel vm)
         {
+
             if (string.IsNullOrEmpty(vm.Correo))
                 ModelState.AddModelError("", "Escribe tu correo electrónico");
             if (string.IsNullOrEmpty(vm.Contrasena))
@@ -51,8 +78,8 @@ namespace PagosAcademicos.Controllers
                     {
                         IsPersistent = true
                     });
-                   
-                    
+
+
 
                     if (user.Rol.Nombre == "Administrador")
                     {
@@ -67,7 +94,11 @@ namespace PagosAcademicos.Controllers
             }
             return View(vm);
         }
-
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("Index");
+        }
         public IActionResult Denied()
         {
             // TODO: Your code here

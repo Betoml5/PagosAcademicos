@@ -31,7 +31,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     x.AccessDeniedPath = "/Home/Denied";
     x.LoginPath = "/Home/Index";
     x.LogoutPath = "/Home/LogOut";
-    //x.ExpireTimeSpan= TimeSpan.FromMinutes(30);
+    x.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     x.Cookie.Name = "pagosacademicosCookie";
 
 }
