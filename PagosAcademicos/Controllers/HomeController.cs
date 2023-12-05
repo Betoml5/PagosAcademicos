@@ -29,17 +29,19 @@ namespace PagosAcademicos.Controllers
                 ModelState.AddModelError("", "Escribe tu correo electrónico");
             if (string.IsNullOrEmpty(vm.Contrasena))
                 ModelState.AddModelError("", "Escribe tu contraseña");
-            
+
             if (ModelState.IsValid)
             {
                 var user = UsuarioRepository.GetAll().FirstOrDefault(x => x.Correo == vm.Correo && x.Contrasena == Encriptacion.StringToSHA512(vm.Contrasena));
 
                 if (user != null)
                 {
-                    List<Claim> claims = new List<Claim>();
-                    claims.Add(new Claim("Id", user.Id.ToString()));
-                    claims.Add(new Claim(ClaimTypes.Name, user.Nombre));
-                    claims.Add(new Claim(ClaimTypes.Role, user.Rol.Nombre));
+                    List<Claim> claims = new()
+                    {
+                        new Claim("Id", user.Id.ToString()),
+                        new Claim(ClaimTypes.Name, user.Nombre),
+                        new Claim(ClaimTypes.Role, user.Rol.Nombre)
+                    };
 
                     ClaimsIdentity claimsIdentity = new(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
@@ -60,6 +62,15 @@ namespace PagosAcademicos.Controllers
             }
             return View(vm);
         }
+
+        public IActionResult Denied()
+        {
+            // TODO: Your code here
+            return View();
+        }
+
+    
+
 
     }
 }
