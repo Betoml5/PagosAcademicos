@@ -119,15 +119,20 @@ namespace PagosAcademicos.Controllers
                     ModelState.AddModelError("", "La tarjeta esta vencida");
                 }
             }
-
             if (ModelState.IsValid)
             {
+                var claimEncontrada = User.Identities
+                        .SelectMany(ci => ci.Claims)
+                        .FirstOrDefault(c => c.Type == "Id");
+                string IdClaim = "";
+                if (claimEncontrada != null) { IdClaim = claimEncontrada.Value; }
+
                 var pago = new Pago
                 {
                     Concepto = "Pago de colegiatura",
                     Fecha = System.DateTime.Now,
                     TipoPagoId = vm.MetodoDePagoId,
-                    UsuarioId = 3,
+                    UsuarioId = int.Parse(IdClaim),
                     Monto = 2750
                 };
                 ctx.Insert(pago);

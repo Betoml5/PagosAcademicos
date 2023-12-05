@@ -18,32 +18,40 @@ namespace PagosAcademicos.Controllers
             this.usuarioctx = usuarioctx;
             this.pagoctx = pagoctx;
         }
+
         public IActionResult Index()
         {
-            //TODO
-            //Aqui tendremos que tráenos los datos del usuario logeado
+            var claimEncontrada = User.Identities
+                .SelectMany(ci => ci.Claims)
+                .FirstOrDefault(c => c.Type == "Id");
+
+            int idUsuario = int.Parse(claimEncontrada.Value);
+
             var pagos = pagoctx
                 .GetAll()
+                .Where(p => p.UsuarioId == idUsuario)
                 .Select(x => new PagoModel()
                 {
                     Id = x.Id,
                     Concepto = x.Concepto,
                     Monto = x.Monto,
                     Fecha = x.Fecha,
-                }).OrderBy(x => x.Fecha);
+                })
+                .OrderBy(x => x.Fecha)
+                .ToList();
+
+            string NombreClaim = User.Identity.Name;
 
             var vm = new IndexUsuarioViewModel()
             {
-                Nombre = "Juan",
+                Nombre = NombreClaim,
                 Estatus = false,
                 Pagos = pagos
-
-
             };
 
             return View(vm);
-
         }
+
 
         [Route("Usuario/detalles-pago/{id}")]
         public IActionResult DetallesPago(int id)
