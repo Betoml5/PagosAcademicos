@@ -5,9 +5,11 @@ using PagosAcademicos.Helpers;
 using PagosAcademicos.Models.ViewModels;
 using PagosAcademicos.Repositories;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PagosAcademicos.Controllers
 {
+   
     public class HomeController : Controller
     {
         public HomeController(UsuarioRepository usuarioRepository)
@@ -32,7 +34,7 @@ namespace PagosAcademicos.Controllers
             
             if (ModelState.IsValid)
             {
-                var user = UsuarioRepository.GetAll().FirstOrDefault(x => x.Correo == vm.Correo && x.Contrasena == Encriptacion.StringToSHA512(vm.Contrasena));
+                var user = UsuarioRepository.GetAll().FirstOrDefault(x => x.Correo == vm.Correo.ToLower() && x.Contrasena == Encriptacion.StringToSHA512(vm.Contrasena));
 
                 if (user != null)
                 {

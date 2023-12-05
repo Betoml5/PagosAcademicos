@@ -1,6 +1,7 @@
 
 
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PagosAcademicos.Areas.Admin.Models.ViewModels;
 using PagosAcademicos.Models.Entities;
@@ -8,7 +9,7 @@ using PagosAcademicos.Repositories;
 
 namespace PagosAcademicos.Areas.Admin.Controllers
 {
-
+    [Authorize(Roles = "Administrador")]
     [Area("Admin")]
     public class MetodosPagoController : Controller
     {
@@ -19,6 +20,7 @@ namespace PagosAcademicos.Areas.Admin.Controllers
             this.tipoPagoctx = tipoPagoctx;
         }
 
+        [Authorize(Roles="Administrador, Usuario")]
         public IActionResult Index()
         {
 

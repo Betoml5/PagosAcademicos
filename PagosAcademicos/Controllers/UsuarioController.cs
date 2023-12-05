@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PagosAcademicos.Models.Entities;
 using PagosAcademicos.Models.ViewModels;
 using PagosAcademicos.Repositories;
 
 namespace PagosAcademicos.Controllers
 {
+    [Authorize(Roles = "Usuario")]
     public class UsuarioController : Controller
 
     {

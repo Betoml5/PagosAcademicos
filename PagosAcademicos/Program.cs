@@ -29,7 +29,7 @@ builder.Services.AddTransient<Repository<Semestre>>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
 {
     x.AccessDeniedPath = "/Home/Denied";
-    x.LoginPath = "/Home/Login";
+    x.LoginPath = "/Home/Index";
     x.LogoutPath = "/Home/LogOut";
     //x.ExpireTimeSpan= TimeSpan.FromMinutes(30);
     x.Cookie.Name = "pagosacademicosCookie";
