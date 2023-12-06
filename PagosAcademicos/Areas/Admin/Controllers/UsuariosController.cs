@@ -31,6 +31,7 @@ namespace PagosAcademicos.Areas.Admin.Controllers
         {
             var vm = usuarioRepository
             .GetAll()
+            .Where(x=>x.Rol.Nombre == "Usuario")
             .OrderBy(x => x.Carrera)
             .Select(x => new IndexUsuarioAdminViewModel()
             {
