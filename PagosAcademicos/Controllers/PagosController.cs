@@ -12,11 +12,13 @@ namespace PagosAcademicos.Controllers
     {
         private Repository<Pago> ctx;
         private TipoPagoRepository ctxTipoPago;
+        private UsuarioRepository ctxUsuario;
 
-        public PagosController(Repository<Pago> ctx, TipoPagoRepository ctxTipoPago)
+        public PagosController(Repository<Pago> ctx, TipoPagoRepository ctxTipoPago, UsuarioRepository ctxUsuario)
         {
             this.ctx = ctx;
             this.ctxTipoPago = ctxTipoPago;
+            this.ctxUsuario = ctxUsuario;
         }
         public IActionResult Index()
         {
@@ -136,6 +138,9 @@ namespace PagosAcademicos.Controllers
                     Monto = 2750
                 };
                 ctx.Insert(pago);
+                var usr = ctxUsuario.Get(int.Parse(IdClaim));
+                usr.Estatus = 0;
+                ctxUsuario.Update(usr);
                 return RedirectToAction("Index", "Usuario");
             }
 

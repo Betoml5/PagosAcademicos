@@ -42,10 +42,13 @@ namespace PagosAcademicos.Controllers
 
             string NombreClaim = User.Identity.Name;
 
+
+            var usuario = usuarioctx.GetAll().Where(x => x.Id == idUsuario).FirstOrDefault();
+
             var vm = new IndexUsuarioViewModel()
             {
                 Nombre = NombreClaim,
-                Estatus = false,
+                Estatus = usuario.Estatus==1,
                 Pagos = pagos
             };
 
