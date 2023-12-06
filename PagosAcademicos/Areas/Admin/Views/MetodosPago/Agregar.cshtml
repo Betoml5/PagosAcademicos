@@ -1,5 +1,5 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model PagosAcademicos.Models.Entities.TipoPago
+@model PagosAcademicos.Areas.Admin.Models.ViewModels.AgregarTipoPagoViewModel
 @{
     Layout = "AdminLayout";
 }
@@ -8,9 +8,13 @@
 
     <h3 class="text-2xl">Agregar metodo de pago</h3>
 
-    <form method="post" action="~/Admin/MetodosPago/Agregar" class="flex flex-col max-w-lg p-4 ">
-        <label asp-for="Nombre">Nombre</label>
-        <input type="text" class="input" asp-for="@Model.Nombre">
+    <form method="post" enctype="multipart/form-data" action="~/Admin/MetodosPago/Agregar"
+        class="flex flex-col max-w-lg p-4 ">
+        <label for="Nombre">Nombre</label>
+        <input type="text" id="Name" class="input" asp-for="Nombre">
+        <label for="Icono">Icono</label>
+        <input type="file" asp-for="Icono" accept="image/png">
+        <img id="preview" style="max-width: 50px; max-height: 50px;">
         <input type="submit" value="Agregar" class="bg-primary px-4 py-1 text-white rounded-md mt-2">
         <p class="text-red-500 mt-2">
             @Html.ValidationSummary(true)
@@ -18,3 +22,17 @@
     </form>
 
 </section>
+
+<script>
+    const icon = document.querySelector('#Icon');
+    const preview = document.querySelector('#preview');
+
+    icon.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.addEventListener('load', (e) => {
+            preview.src = e.target.result;
+        });
+    });
+</script>

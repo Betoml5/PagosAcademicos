@@ -42,8 +42,10 @@ namespace PagosAcademicos.Areas.Admin.Controllers
         {
             return View();
         }
+
+
         [HttpPost]
-        public IActionResult Agregar(TipoPago tipoPago)
+        public IActionResult Agregar(AgregarTipoPagoViewModel tipoPago)
         {
 
 
@@ -59,9 +61,38 @@ namespace PagosAcademicos.Areas.Admin.Controllers
                 ModelState.AddModelError("", "El nombre es requerido");
             }
 
+            if (tipoPago.Icono == null)
+            {
+                ModelState.AddModelError("", "El icono es requerido");
+            }
+
+            if (tipoPago.Icono != null && tipoPago.Icono.ContentType != "image/png")
+            {
+                ModelState.AddModelError("", "El icono debe ser png");
+            }
+
+            // if (tipoPago.Icono != null && tipoPago.Icono.Length > 1024 * 1024)
+            // {
+            //     ModelState.AddModelError("", "El icono debe pesar menos de 1MB");
+            // }
+
+
             if (ModelState.IsValid)
             {
-                tipoPagoctx.Insert(tipoPago);
+                var metodoPago = new TipoPago()
+                {
+                    Nombre = tipoPago.Nombre,
+                };
+
+                tipoPagoctx.Insert(metodoPago);
+
+                if (tipoPago.Icono != null)
+                {
+                    System.IO.FileStream fs = System.IO.File.Create($"wwwroot/icons/{metodoPago.Id}.png");
+                    tipoPago.Icono.CopyTo(fs);
+                    fs.Close();
+                }
+
                 return RedirectToAction("Index");
             }
 
