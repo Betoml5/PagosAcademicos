@@ -20,7 +20,6 @@ namespace PagosAcademicos.Areas.Admin.Controllers
             this.tipoPagoctx = tipoPagoctx;
         }
 
-        [Authorize(Roles="Administrador, Usuario")]
         public IActionResult Index()
         {
 
