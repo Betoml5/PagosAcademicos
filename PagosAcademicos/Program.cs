@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMvc();
 
-string CadenaConexion = "server = sql.freedb.tech;user = freedb_FirtsUser; database = freedb_cliente; password = 7Z%@TYfXYnxjs4b";
+string CadenaConexion = "server=paywave.websitos256.com;user=websitos_paywaveuser;database=websitos_paywave;password=paywavepass";
 
 
 builder.Services.AddDbContext<FreedbClienteContext>(

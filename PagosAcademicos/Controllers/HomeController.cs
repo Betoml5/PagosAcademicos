@@ -24,8 +24,8 @@ namespace PagosAcademicos.Controllers
             if (User.Identity != null)
             {
                 var claimEncontrada = User.Identities
-        .SelectMany(ci => ci.Claims)
-        .FirstOrDefault(c => c.Type == "Id");
+                    .SelectMany(ci => ci.Claims)
+                    .FirstOrDefault(c => c.Type == "Id");
                 string IdClaim = "0";
                 if (claimEncontrada != null) { IdClaim = claimEncontrada.Value; }
 
@@ -59,9 +59,11 @@ namespace PagosAcademicos.Controllers
             if (string.IsNullOrEmpty(vm.Contrasena))
                 ModelState.AddModelError("", "Escribe tu contraseña");
 
-            if (ModelState.IsValid)
-            {
-                var user = UsuarioRepository.GetAll().FirstOrDefault(x => x.Correo == vm.Correo.ToLower() && x.Contrasena == Encriptacion.StringToSHA512(vm.Contrasena));
+            if (ModelState.IsValid) { 
+
+                var user = UsuarioRepository
+                    .GetAll()
+                    .FirstOrDefault(x => x.Correo?.ToLower() == vm.Correo.ToLower() && x.Contrasena == Encriptacion.StringToSHA512(vm.Contrasena));
 
                 if (user != null)
                 {
