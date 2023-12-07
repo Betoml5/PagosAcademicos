@@ -14,7 +14,7 @@
         <input required type="text" id="Name" class="input" asp-for="Nombre">
         <label for="Icono">Icono</label>
         <input required type="file" asp-for="Icono" accept="image/png" id="icon">
-        <img id="preview" style="max-width: 50px; max-height: 50px;">
+        <img id="preview" style="max-width: 50px; max-height: 50px; margin: 0 auto;">
         <input type="submit" value="Agregar" class="bg-primary px-4 py-1 text-white rounded-md mt-2">
         <p class="text-red-500 mt-2">
             @Html.ValidationSummary(true)

@@ -1,8 +1,13 @@
 @tailwind base;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #f5f2e7;
   font-family: "Poppins", "sans-serif";
+  scroll-behavior: smooth;
 }
 
 .card {

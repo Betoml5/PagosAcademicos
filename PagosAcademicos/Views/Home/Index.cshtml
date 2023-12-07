@@ -16,7 +16,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
             <p class="mt-4 mb-6 text-3xl">
                 Simplificamos el pago de tu inscripción.
             </p>
-            <a to="/pagar"
+            <a href="#iniciar-sesion"
                 class="self-start shadow-md bg-secondary_blue px-8 py-2 mt-4 rounded-full text-white hover:shadow-xl hover:bg-secondary_blue_light transition duration-500 ease-in-out transform hover:-translate-y-1 ">
                 Paga aquí
             </a>
@@ -33,7 +33,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                 <li class="mt-4">
                     <p class="text-secondary_blue font-light text-2xl">
                         <span class="font-bold text-2xl">1. </span>
-                        <a class="underline">
+                        <a class="underline" href="#iniciar-sesion">
                             Inicia sesión
                         </a>
                         en la plataforma.
@@ -54,21 +54,24 @@ For more information on enabling MVC for empty projects, visit https://go.micros
             </ul>
         </div>
     </section>
-    <section class="my-4 signin">
+    <section class="my-4 signin" id="iniciar-sesion">
         <div class="p-6  rounded-md ">
             <h2 class="text-2xl">Inicia sesión</h2>
             <form class="flex flex-col mt-4 justify-center" method="post" action="~/home/index">
                 <label for="email" class="my-2">
                     Correo electrónico
                 </label>
-                <input type="text" placeholder="Correo electrónico" class="p-4 rounded-md my-2 shadow-xl border " asp-for="Correo" />
+                <input type="text" placeholder="Correo electrónico" class="p-4 rounded-md my-2 shadow-xl border "
+                    asp-for="Correo" />
 
                 <label for="password" class="my-2">
                     Contraseña
                 </label>
-                <input type="password" placeholder="Contraseña" class="p-4 rounded-md my-2 shadow-xl border" asp-for="Contrasena" />
+                <input type="password" placeholder="Contraseña" class="p-4 rounded-md my-2 shadow-xl border"
+                    asp-for="Contrasena" />
 
-                <button class="mt-4 bg-primary p-4 text-white font-poppins font-bold rounded-lg hover:bg-opacity-80" type="submit">
+                <button class="mt-4 bg-primary p-4 text-white font-poppins font-bold rounded-lg hover:bg-opacity-80"
+                    type="submit">
                     Iniciar Sesión
                 </button>
             </form>
