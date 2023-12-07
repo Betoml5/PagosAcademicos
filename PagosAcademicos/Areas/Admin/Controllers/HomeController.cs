@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PagosAcademicos.Areas.Admin.Models.ViewModels;
 using PagosAcademicos.Models.Entities;
 using PagosAcademicos.Models.ViewModels;
@@ -8,6 +9,7 @@ namespace PagosAcademicos.Areas.Admin.Controllers
 {
 
 	[Area("Admin")]
+	[Authorize(Roles = "Administrador")]
 	public class HomeController : Controller
 	{
 		private PagoRepository pagosRepository;

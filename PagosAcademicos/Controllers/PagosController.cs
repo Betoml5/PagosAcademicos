@@ -1,19 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PagosAcademicos.Models.Entities;
 using PagosAcademicos.Models.ViewModels;
 using PagosAcademicos.Repositories;
 
 namespace PagosAcademicos.Controllers
 {
+    [Authorize(Roles = "Usuario")]
+    
     public class PagosController : Controller
     {
         private Repository<Pago> ctx;
         private TipoPagoRepository ctxTipoPago;
+        private UsuarioRepository ctxUsuario;
 
-        public PagosController(Repository<Pago> ctx, TipoPagoRepository ctxTipoPago)
+        public PagosController(Repository<Pago> ctx, TipoPagoRepository ctxTipoPago, UsuarioRepository ctxUsuario)
         {
             this.ctx = ctx;
             this.ctxTipoPago = ctxTipoPago;
+            this.ctxUsuario = ctxUsuario;
         }
         public IActionResult Index()
         {
@@ -116,18 +121,26 @@ namespace PagosAcademicos.Controllers
                     ModelState.AddModelError("", "La tarjeta esta vencida");
                 }
             }
-
             if (ModelState.IsValid)
             {
+                var claimEncontrada = User.Identities
+                        .SelectMany(ci => ci.Claims)
+                        .FirstOrDefault(c => c.Type == "Id");
+                string IdClaim = "";
+                if (claimEncontrada != null) { IdClaim = claimEncontrada.Value; }
+
                 var pago = new Pago
                 {
                     Concepto = "Pago de colegiatura",
                     Fecha = System.DateTime.Now,
                     TipoPagoId = vm.MetodoDePagoId,
-                    UsuarioId = 3,
+                    UsuarioId = int.Parse(IdClaim),
                     Monto = 2750
                 };
                 ctx.Insert(pago);
+                var usr = ctxUsuario.Get(int.Parse(IdClaim));
+                usr.Estatus = 0;
+                ctxUsuario.Update(usr);
                 return RedirectToAction("Index", "Usuario");
             }
 

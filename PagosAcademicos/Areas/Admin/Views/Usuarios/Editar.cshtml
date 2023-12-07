@@ -1,0 +1,52 @@
+@model PagosAcademicos.Areas.Admin.Models.ViewModels.AgregarUsuarioViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "AdminLayout";
+}
+
+
+
+<section class="max-w-xl mx-auto mt-4">
+    <h1 class="text-2xl font-bold text-gray-700">Editar Usuario</h1>
+    <form action="~/admin/usuarios/editar" method="post" class="flex flex-col mt-4">
+        <input type="hidden" asp-for="Id">
+        <div class="flex flex-col ">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="input my-2" id="nombre" placeholder="Nombre" asp-for="Nombre">
+        </div>
+        <div class="flex flex-col">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="input my-2" id="apellido" placeholder="Apellido" asp-for="Apellido">
+        </div>
+        <div class="flex flex-col">
+            <label for="semestre">Semestre</label>
+            <select class="input" asp-for="Semestre">
+                @foreach (var semestre in Model.Semestres)
+                {
+                    <option value="@semestre.Id">@semestre.Nombre</option>
+                }
+            </select>
+        </div>
+        <div class="flex flex-col">
+            <label for="carrera">Carrera</label>
+            <select class="input" asp-for="Carrera">
+                @foreach (var carrera in Model.Carreras)
+                {
+                    <option value="@carrera.Id">@carrera.Nombre</option>
+                }
+            </select>
+        </div>
+        <div class="text-red-500  mt-2">
+            @Html.ValidationSummary(true)
+        </div>
+        <div class="flex mt-4 ">
+            <input type="submit" value="Guardar" class="bg-primary text-white mr-4  p-2 rounded-md ">
+            <a href="~/admin/usuarios" class="bg-red-500  text-white mr-2  p-2 rounded-md">Cancelar</a>
+        </div>
+
+
+
+
+    </form>
+</section>

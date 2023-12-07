@@ -5,8 +5,8 @@ namespace PagosAcademicos.Repositories
     public class Repository<T> where T : class
     {
 
-        public PagosacademicosContext ctx;
-        public Repository(PagosacademicosContext ctx)
+        public FreedbClienteContext ctx;
+        public Repository(FreedbClienteContext ctx)
         {
             this.ctx = ctx;
         }
