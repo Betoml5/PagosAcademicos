@@ -18,9 +18,12 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 					<div class="border-t">
 						@foreach (var item in Model.MetodosPago)
 						{
-							<div class="flex items-center px-8 py-5">
-								<input class="" asp-for="MetodoDePagoId" value="@item.Id" type="radio">
-								<label class="text-sm font-medium ml-4">@item.Nombre</label>
+							<div class="flex justify-between items-center px-8 py-5">
+								<div>
+									<input class="" asp-for="MetodoDePagoId" value="@item.Id" type="radio">
+									<label class="text-sm font-medium ml-4">@item.Nombre</label>
+								</div>
+								<img src="~/icons/@(item.Id).png" alt="@item.Nombre" style="width: 30px; height: 30px;">
 							</div>
 						}
 						<div class="grid grid-cols-2 gap-4 px-8 pb-8">
@@ -29,6 +32,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 								<input class="flex items-center h-10 border mt-1 rounded px-4 w-full text-sm"
 									type="text" placeholder="0000 0000 0000 0000" asp-for="NumeroTarjeta"
 									maxlength="16">
+
 							</div>
 							<div class="">
 								<label class="text-xs font-semibold" for="cardNumber">Fecha de expiración</label>

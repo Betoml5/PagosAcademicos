@@ -11,9 +11,9 @@
     <form method="post" enctype="multipart/form-data" action="~/Admin/MetodosPago/Agregar"
         class="flex flex-col max-w-lg p-4 ">
         <label for="Nombre">Nombre</label>
-        <input type="text" id="Name" class="input" asp-for="Nombre">
+        <input required type="text" id="Name" class="input" asp-for="Nombre">
         <label for="Icono">Icono</label>
-        <input type="file" asp-for="Icono" accept="image/png">
+        <input required type="file" asp-for="Icono" accept="image/png" id="icon">
         <img id="preview" style="max-width: 50px; max-height: 50px;">
         <input type="submit" value="Agregar" class="bg-primary px-4 py-1 text-white rounded-md mt-2">
         <p class="text-red-500 mt-2">
@@ -24,7 +24,7 @@
 </section>
 
 <script>
-    const icon = document.querySelector('#Icon');
+    const icon = document.querySelector('#icon');
     const preview = document.querySelector('#preview');
 
     icon.addEventListener('change', (e) => {

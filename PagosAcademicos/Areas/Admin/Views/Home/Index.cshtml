@@ -15,7 +15,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                     <span class="titulo-card">
                         Monto más alto
                     </span>
-                    <span class="detalles-card">@Model.MontoMasAlto</span>
+                    <span class="detalles-card">@Model.MontoMasAlto.ToString("c")</span>
                 </div>
 
                 <i class="fa-solid fa-money-bill-trend-up icon"></i>
@@ -32,7 +32,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                     <span class="titulo-card">
                         Último pago
                     </span>
-                    <span class="detalles-card">@Model.UltimoPago</span>
+                    <span class="detalles-card">@Model.UltimoPago.ToString("C")</span>
                 </div>
 
                 <i class="fa-solid fa-receipt icon"></i>
@@ -106,7 +106,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                                 @item.Concepto
                             </td>
                             <td>
-                                @item.Monto
+                                @item.Monto.ToString("C")
                             </td>
 
                             <td>

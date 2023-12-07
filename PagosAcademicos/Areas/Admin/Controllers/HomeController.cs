@@ -28,6 +28,7 @@ namespace PagosAcademicos.Areas.Admin.Controllers
 
 			vm.Pagos = pagos;
 			vm.FechaUltimoPago = ultimoPago.Fecha;
+			vm.UltimoPago = ultimoPago.Monto;
 			vm.MontoMasAlto = pagoMasAlto.Monto;
 			vm.NumeroPagos = pagos.Count();
 

@@ -33,7 +33,6 @@ namespace PagosAcademicos.Areas.Admin.Controllers
                     Monto = pago.Monto,
                     Concepto = pago.Concepto,
                     Fecha = pago.Fecha
-
                 });
 
             return View(vm);

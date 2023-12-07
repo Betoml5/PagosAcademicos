@@ -1,28 +1,41 @@
-@model PagosAcademicos.Models.Entities.TipoPago
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model PagosAcademicos.Areas.Admin.Models.ViewModels.AgregarTipoPagoViewModel
 @{
-    ViewData["Title"] = "Editar";
     Layout = "AdminLayout";
 }
 
-
 <section class="max-w-xl mx-auto mt-4 ">
 
-    <h3 class="text-2xl">Editar metodo de pago</h3>
+    <h3 class="text-2xl">Agregar metodo de pago</h3>
 
-    <form method="post" action="~/Admin/MetodosPago/Editar" class="flex flex-col max-w-lg p-4 ">
-        <input type="hidden" asp-for="@Model.Id" />
-        <label asp-for="Nombre">Nombre</label>
-        <input type="text" class="input" asp-for="@Model.Nombre">
-        <div class="flex justify-end">
-            <input type="submit" value="Guardar" class="bg-primary px-4 py-1 text-white rounded-md mt-2 mr-4">
-            <a href="~/Admin/MetodosPago" class="bg-red-500 px-4 py-1 text-white rounded-md mt-2">
-                Cancelar
-            </a>
+    <form method="post" enctype="multipart/form-data" action="~/Admin/MetodosPago/Editar"
+        class="flex flex-col max-w-lg p-4 ">
+        <input type="hidden" asp-for="Id">
+        <label for="Nombre">Nombre</label>
+        <input required type="text" id="Name" class="input" asp-for="Nombre">
+        <label for="Icono" class="mt-4">Icono</label>
+        <div class="flex justify-between">
+            <input required type="file" asp-for="Icono" accept="image/png" id="icon">
+            <img src="~/icons/@(Model.Id).png" id="preview" style="max-width: 50px; max-height: 50px;">
         </div>
+        <input type="submit" value="Guardar" class="bg-primary px-4 py-1 text-white rounded-md mt-2">
         <p class="text-red-500 mt-2">
             @Html.ValidationSummary(true)
         </p>
     </form>
 
 </section>
+
+<script>
+    const icon = document.querySelector('#icon');
+    const preview = document.querySelector('#preview');
+
+    icon.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.addEventListener('load', (e) => {
+            preview.src = e.target.result;
+        });
+    });
+</script>
