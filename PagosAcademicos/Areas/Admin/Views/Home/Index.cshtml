@@ -64,7 +64,19 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                     <span class="titulo-card">
                         Fecha del último pago
                     </span>
-                    <span class="font-semibold">@Model.FechaUltimoPago.ToLongDateString().ToUpper()</span>
+                    <span class="font-semibold">
+                        @if (@Model.FechaUltimoPago.ToString("yyyy-MM-dd") != "0001-01-01")
+                        {
+                            @Model.FechaUltimoPago.ToString("yyyy-MM-dd").ToUpper()
+
+                        }
+                        else
+                        {
+                            <span>
+                                No hay pagos registrados
+                            </span>
+                        }
+                    </span>
                 </div>
                 <i class="fa-solid fa-calendar-days icon"></i>
 
@@ -90,29 +102,32 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.Pagos)
+                    @if (Model.Pagos != null)
                     {
-                        <tr>
-                            <td>
-                                @item.Id
-                            </td>
-                            <td>
-                                @item.Fecha.ToString("yyyy-MM-dd")
-                            </td>
-                            <td>
-                                @item.TipoPago.Nombre
-                            </td>
-                            <td>
-                                @item.Concepto
-                            </td>
-                            <td>
-                                @item.Monto.ToString("C")
-                            </td>
+                        @foreach (var item in Model.Pagos)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.Fecha.ToString("yyyy-MM-dd")
+                                </td>
+                                <td>
+                                    @item.TipoPago.Nombre
+                                </td>
+                                <td>
+                                    @item.Concepto
+                                </td>
+                                <td>
+                                    @item.Monto.ToString("C")
+                                </td>
 
-                            <td>
-                                @item.Usuario.Nombre
-                            </td>
-                        </tr>
+                                <td>
+                                    @item.Usuario.Nombre
+                                </td>
+                            </tr>
+                        }
                     }
 
                 </tbody>
