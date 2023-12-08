@@ -168,10 +168,6 @@ namespace PagosAcademicos.Areas.Admin.Controllers
                 ModelState.AddModelError("", "El nombre es requerido");
             }
 
-            if (vm.Icono == null)
-            {
-                ModelState.AddModelError("", "El icono es requerido");
-            }
 
             if (vm.Icono != null && vm.Icono.ContentType != "image/png")
             {

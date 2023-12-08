@@ -1,4 +1,4 @@
-﻿    @model PagosAcademicos.Models.ViewModels.IndexUsuarioViewModel
+﻿@model PagosAcademicos.Models.ViewModels.IndexUsuarioViewModel
 @*
 For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -32,7 +32,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
     <hr class="my-4 border" />
     <h2 class="text-2xl mb-4">Historial de pagos</h2>
 
-    @if (Model.Pagos != null)
+    @if (Model.Pagos != null && Model.Pagos.Count() > 0)
     {
         @foreach (var pago in Model.Pagos)
         {

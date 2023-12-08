@@ -19,6 +19,15 @@ public class TipoPagoRepository : Repository<TipoPago>
         .OrderBy(x => x.Nombre);
     }
 
+
+    public TipoPago? Get(int id)
+    {
+        return ctx.TipoPago
+            .Where(x => x.Id == id)
+            .Include(x => x.Pago)
+            .FirstOrDefault();
+    }
+
     public TipoPago? GetByNombre(string nombre)
     {
         return ctx.TipoPago

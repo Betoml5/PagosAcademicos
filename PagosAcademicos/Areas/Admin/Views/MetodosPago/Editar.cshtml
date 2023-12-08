@@ -15,7 +15,7 @@
         <input required type="text" id="Name" class="input" asp-for="Nombre">
         <label for="Icono" class="mt-4">Icono</label>
         <div class="flex justify-between">
-            <input required type="file" asp-for="Icono" accept="image/png" id="icon">
+            <input type="file" asp-for="Icono" accept="image/png" id="icon">
             <img src="~/icons/@(Model.Id).png" id="preview" style="max-width: 50px; max-height: 50px;">
         </div>
         <input type="submit" value="Guardar" class="bg-primary px-4 py-1 text-white rounded-md mt-2">

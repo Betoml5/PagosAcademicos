@@ -7,7 +7,7 @@ using PagosAcademicos.Repositories;
 namespace PagosAcademicos.Controllers
 {
     [Authorize(Roles = "Usuario")]
-    
+
     public class PagosController : Controller
     {
         private Repository<Pago> ctx;
@@ -65,7 +65,7 @@ namespace PagosAcademicos.Controllers
 
             if (vm.MetodoDePagoId == 0)
             {
-                ModelState.AddModelError("", "El metodo de pago es requerido");
+                ModelState.AddModelError("", "El método de pago es requerido");
             }
 
             if (string.IsNullOrWhiteSpace(vm.NumeroTarjeta))
@@ -75,7 +75,7 @@ namespace PagosAcademicos.Controllers
 
             if (!string.IsNullOrWhiteSpace(vm.NumeroTarjeta) && vm.NumeroTarjeta.Length != 16)
             {
-                ModelState.AddModelError("", "El numero de tarjeta debe tener 16 digitos");
+                ModelState.AddModelError("", "El numero de tarjeta debe tener 16 dígitos");
             }
 
             if (string.IsNullOrWhiteSpace(vm.CVV))
@@ -85,17 +85,17 @@ namespace PagosAcademicos.Controllers
 
             if (!string.IsNullOrWhiteSpace(vm.CVV) && vm.CVV.Length != 3)
             {
-                ModelState.AddModelError("", "El CVV debe tener 3 digitos");
+                ModelState.AddModelError("", "El CVV debe tener 3 dígitos");
             }
 
             if (string.IsNullOrWhiteSpace(vm.FechaExpiracion))
             {
-                ModelState.AddModelError("", "La fecha de expiracion es requerida");
+                ModelState.AddModelError("", "La fecha de expiración es requerida");
             }
 
             if (!string.IsNullOrWhiteSpace(vm.FechaExpiracion) && vm.FechaExpiracion.Length != 5)
             {
-                ModelState.AddModelError("", "La fecha de expiracion debe tener el formato MM/YY");
+                ModelState.AddModelError("", "La fecha de expiración debe tener el formato MM/YY");
             }
 
 
@@ -108,12 +108,12 @@ namespace PagosAcademicos.Controllers
 
                 if (int.Parse(mes) < 1 || int.Parse(mes) > 12)
                 {
-                    ModelState.AddModelError("", "El mes de expiracion debe ser un numero entre 1 y 12");
+                    ModelState.AddModelError("", "El mes de expiración debe ser un numero entre 1 y 12");
                 }
 
-                if (int.Parse(anio) < 22 || int.Parse(anio) > 30)
+                if (int.Parse(anio) < 23 || int.Parse(anio) > 30)
                 {
-                    ModelState.AddModelError("", "El año de expiracion debe ser un numero entre 21 y 30");
+                    ModelState.AddModelError("", "El año de expiración debe ser un año entre 23 y 30");
                 }
 
                 if (anio == "23" && int.Parse(mes) < 12)

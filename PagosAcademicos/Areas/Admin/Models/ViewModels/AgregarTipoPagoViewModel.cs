@@ -6,6 +6,6 @@ namespace PagosAcademicos.Areas.Admin.Models.ViewModels
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
-        public IFormFile Icono { get; set; } = null!;
+        public IFormFile? Icono { get; set; }
     }
 }
