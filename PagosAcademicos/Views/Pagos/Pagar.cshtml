@@ -16,15 +16,18 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 				@*Aqui vamos a iterar los metodos de pago*@
 				<div class="bg-white rounded mt-4 shadow-lg">
 					<div class="border-t">
-						@foreach (var item in Model.MetodosPago)
+						@if (Model.MetodosPago != null && Model.MetodosPago.Count() > 0)
 						{
-							<div class="flex justify-between items-center px-8 py-5">
-								<div>
-									<input class="" asp-for="MetodoDePagoId" value="@item.Id" type="radio">
-									<label class="text-sm font-medium ml-4">@item.Nombre</label>
+							@foreach (var item in Model.MetodosPago)
+							{
+								<div class="flex justify-between items-center px-8 py-5">
+									<div>
+										<input class="" asp-for="MetodoDePagoId" value="@item.Id" type="radio">
+										<label class="text-sm font-medium ml-4">@item.Nombre</label>
+									</div>
+									<img src="~/icons/@(item.Id).png" alt="@item.Nombre" style="width: 30px; height: 30px;">
 								</div>
-								<img src="~/icons/@(item.Id).png" alt="@item.Nombre" style="width: 30px; height: 30px;">
-							</div>
+							}
 						}
 						<div class="grid grid-cols-2 gap-4 px-8 pb-8">
 							<div class="col-span-2">

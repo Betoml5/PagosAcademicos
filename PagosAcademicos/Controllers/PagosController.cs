@@ -62,6 +62,10 @@ namespace PagosAcademicos.Controllers
         public IActionResult Pagar(AgregarPagoViewModel vm)
         {
 
+            // Verificar que el mes y año esten en el formato correcto
+
+
+
 
             if (vm.MetodoDePagoId == 0)
             {
@@ -93,34 +97,60 @@ namespace PagosAcademicos.Controllers
                 ModelState.AddModelError("", "La fecha de expiración es requerida");
             }
 
-            if (!string.IsNullOrWhiteSpace(vm.FechaExpiracion) && vm.FechaExpiracion.Length != 5)
-            {
-                ModelState.AddModelError("", "La fecha de expiración debe tener el formato MM/YY");
-            }
-
-
 
 
             if (!string.IsNullOrWhiteSpace(vm.FechaExpiracion))
             {
-                var mes = vm.FechaExpiracion.Substring(0, 2);
-                var anio = vm.FechaExpiracion.Substring(3, 2);
+                // verificar que tenga el formato MM/YY con 5 caracteres y que el 3er caracter sea /
 
-                if (int.Parse(mes) < 1 || int.Parse(mes) > 12)
+                if (vm.FechaExpiracion.Length != 5 || vm.FechaExpiracion[2] != '/')
                 {
-                    ModelState.AddModelError("", "El mes de expiración debe ser un numero entre 1 y 12");
+                    ModelState.AddModelError("", "La fecha de expiración debe tener el formato MM/YY");
+
+                }
+                else
+                {
+
+                    var mes = vm.FechaExpiracion.Substring(0, 2);
+                    var anio = vm.FechaExpiracion.Substring(3, 2);
+
+                    if (int.Parse(mes) < 1 || int.Parse(mes) > 12)
+                    {
+                        ModelState.AddModelError("", "El mes de expiración debe ser un numero entre 1 y 12");
+                    }
+
+                    if (int.Parse(anio) < 23 || int.Parse(anio) > 30)
+                    {
+                        ModelState.AddModelError("", "El año de expiración debe ser un año entre 23 y 30");
+                    }
+
+                    if (anio == "23" && int.Parse(mes) < 12)
+                    {
+                        ModelState.AddModelError("", "La tarjeta esta vencida");
+                    }
+
                 }
 
-                if (int.Parse(anio) < 23 || int.Parse(anio) > 30)
-                {
-                    ModelState.AddModelError("", "El año de expiración debe ser un año entre 23 y 30");
-                }
 
-                if (anio == "23" && int.Parse(mes) < 12)
+
+            }
+
+            if (!string.IsNullOrWhiteSpace(vm.NumeroTarjeta))
+            {
+                // Que solo sean numeros
+                foreach (var c in vm.NumeroTarjeta)
                 {
-                    ModelState.AddModelError("", "La tarjeta esta vencida");
+                    if (!char.IsDigit(c))
+                    {
+                        ModelState.AddModelError("", "El numero de tarjeta debe contener solo números");
+                    }
                 }
             }
+
+
+
+
+
             if (ModelState.IsValid)
             {
                 var claimEncontrada = User.Identities
