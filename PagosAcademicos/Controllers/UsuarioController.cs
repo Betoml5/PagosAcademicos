@@ -11,9 +11,9 @@ namespace PagosAcademicos.Controllers
 
     {
         private readonly Repository<Usuario> usuarioctx;
-        private readonly Repository<Pago> pagoctx;
+        private readonly PagoRepository pagoctx;
 
-        public UsuarioController(Repository<Usuario> usuarioctx, Repository<Pago> pagoctx)
+        public UsuarioController(Repository<Usuario> usuarioctx, PagoRepository pagoctx)
         {
             this.usuarioctx = usuarioctx;
             this.pagoctx = pagoctx;
@@ -48,7 +48,7 @@ namespace PagosAcademicos.Controllers
             var vm = new IndexUsuarioViewModel()
             {
                 Nombre = NombreClaim,
-                Estatus = usuario.Estatus==1,
+                Estatus = usuario.Estatus == 1,
                 Pagos = pagos
             };
 
@@ -71,7 +71,7 @@ namespace PagosAcademicos.Controllers
                 Id = pago.Id,
                 Monto = pago.Monto,
                 Fecha = pago.Fecha.ToString("dd/MM/yyyy"),
-
+                MetodoDePago = pago.TipoPago.Nombre,
                 Concepto = pago.Concepto
             };
 

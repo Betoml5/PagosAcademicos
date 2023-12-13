@@ -64,9 +64,6 @@ namespace PagosAcademicos.Controllers
 
             // Verificar que el mes y año esten en el formato correcto
 
-
-
-
             if (vm.MetodoDePagoId == 0)
             {
                 ModelState.AddModelError("", "El método de pago es requerido");

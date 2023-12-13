@@ -11,6 +11,14 @@ public class PagoRepository : Repository<Pago>
     {
     }
 
+    public Pago? Get(int id)
+    {
+        return ctx.Pago
+        .Include(x => x.TipoPago)
+        .Include(x => x.Usuario)
+        .FirstOrDefault(x => x.Id == id);
+    }
+
     override
         public IEnumerable<Pago> GetAll()
     {
